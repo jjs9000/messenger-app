@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Messenger;
+use App\Models\Message;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class MessengerFactory extends Factory
+class MessageFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Messenger::class;
+    protected $model = Message::class;
 
     /**
      * Define the model's default state.
@@ -21,8 +21,15 @@ class MessengerFactory extends Factory
      */
     public function definition()
     {
+        do{
+            $from = rand(1, 15);
+            $to = rand(1, 15);
+        } while($from == $to);
+        
         return [
-            //
+            'from' => $from,
+            'to' => $to,
+            'text' => $this->faker->sentence,
         ];
     }
 }
